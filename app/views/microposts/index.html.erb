@@ -1,0 +1,19 @@
+<table class="profile" summary="All microposts">
+  <tr>
+    <td class="main">
+      <h1>All microposts</h1>
+      <% unless  @microposts.empty? %>
+        <table class="microposts" summary="All microposts">
+          <%= render @microposts %>
+        </table>
+        <%= will_paginate %>
+      <% end %>
+    </td>
+    <td class="sidebar round">
+      <strong><em>
+         This space will contain the list of microposters, in the order of
+         their individual prolificity quotients.
+      </em></strong>
+    </td>
+  </tr>
+</table>
