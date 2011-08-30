@@ -24,4 +24,9 @@ Xflmedia01::Application.configure do
 
   # Do not compress assets
   config.assets.compress = false
+  
+  # Time zone
+  config.time_zone = 'Pacific Time (US & Canada)'
+  
+  config.serve_statis_assets = true
 end

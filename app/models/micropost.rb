@@ -1,10 +1,16 @@
 class Micropost < ActiveRecord::Base
-  attr_accessible :content
+  attr_accessible :content, :group_id
   
   belongs_to :user
+  belongs_to :group
   
   validates :content, :presence => true, :length =>  { :maximum => 140 }
   validates :user_id, :presence => true
+  validates :group_id, :presence => true
+
+  def self.from_group(group)
+    where(:group_id => group.id)
+  end
 
   def self.from_users_followed_by(user)
     #1 following_ids = user.following_ids

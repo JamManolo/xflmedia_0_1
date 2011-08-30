@@ -16,8 +16,8 @@ class User < ActiveRecord::Base
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation
   
-  has_many :managers, :foreign_key => "group_id"
-  has_many :owners,   :foreign_key => "roster_id"
+  has_many :groups
+  has_many :rosters
   
   has_many :microposts, :dependent => :destroy
   
@@ -30,7 +30,13 @@ class User < ActiveRecord::Base
                                    :class_name => "Relationship",
                                    :dependent => :destroy
                                    
-  has_many :followers, :through => :reverse_relationships, :source => :follower  
+  has_many :followers, :through => :reverse_relationships, :source => :follower
+  
+  has_many :reverse_memberships, :foreign_key => "member_id",
+                                 :class_name => "Membership",
+                                 :dependent => :destroy
+
+  has_many :leagues, :through => :reverse_memberships, :source => :league
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   
@@ -41,8 +47,7 @@ class User < ActiveRecord::Base
                     :format     => { :with => email_regex },
                     :uniqueness => { :case_sensitive => false }
 
-  # Automatically create the virtual attribute 'password_confirmation'.
-
+  # Automatically creates the virtual attribute 'password_confirmation'
   validates :password, :presence     => true,
                        :confirmation => true,
                        :length       => { :within => 6..40 }
@@ -89,8 +94,15 @@ class User < ActiveRecord::Base
   private
   
     def encrypt_password
-      self.salt = make_salt if new_record?
-      self.encrypted_password = encrypt(password)
+      if new_record?
+        self.salt = make_salt
+        encrypt_confirmation_code
+      end
+      self.encrypted_password = encrypt(password) unless password.nil?
+    end
+    
+    def encrypt_confirmation_code
+      self.confirmation_code = encrypt(email)
     end
     
     def encrypt(string)

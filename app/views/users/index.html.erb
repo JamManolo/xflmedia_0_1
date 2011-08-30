@@ -2,8 +2,14 @@
 
 <%= will_paginate %>
 
-<ul class="users">
-  <%= render @users %>
-</ul>
+<table class="profile">
+  <tr>
+    <td class="main">
+      <table class="users">
+        <%= render @users %>
+      </table>
+    </td>
+  </tr>
+</table>
 
 <%= will_paginate %>

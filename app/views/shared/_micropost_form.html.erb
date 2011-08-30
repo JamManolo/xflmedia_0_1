@@ -1,5 +1,6 @@
 <%= form_for @micropost do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
+  <%= f.hidden_field :group_id %>
   <div class="field">
     <%= f.text_area :content %>
   </div>
@@ -7,4 +8,3 @@
     <%= f.submit "Submit" %>
   </div>
 <% end %>
-

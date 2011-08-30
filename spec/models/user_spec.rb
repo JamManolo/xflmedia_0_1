@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe User do
-  
+        
   before(:each) do
     @attr = {
       :name => "Example User",
-      :email => "user@example.com",
+      :email => Factory.next(:email),
       :password => "foobar",
       :password_confirmation => "foobar"
     }
@@ -15,10 +15,6 @@ describe User do
     User.create!(@attr)
   end
    
-#  before(:each) do
-#    @attr = { :name => "Example User", :email => "user@example.com" }
-#  end
-
   it "should create a new instance given valid attributes" do
     User.create!(@attr)
   end
@@ -162,9 +158,9 @@ describe User do
   
     before(:each) do
       @user = User.create(@attr)
-      @mp1 = Factory(:micropost, :user => @user, :created_at => 1.day.ago)
-      @mp2 = Factory(:micropost, :user => @user, :created_at => 1.hour.ago)
-      @mp3 = Factory(:micropost, :user => @user, :created_at => 1.minute.ago)
+      @mp1 = Factory(:micropost, :user => @user, :group_id => 0, :created_at => 1.day.ago)
+      @mp2 = Factory(:micropost, :user => @user, :group_id => 0, :created_at => 1.hour.ago)
+      @mp3 = Factory(:micropost, :user => @user, :group_id => 0, :created_at => 1.minute.ago)
     end
     
     it "should have a microposts attribute" do
@@ -195,13 +191,14 @@ describe User do
 
       it "should not include a different user's microposts" do
         mp3 = Factory(:micropost,
-                      :user => Factory(:user, :email => Factory.next(:email)))
+                      :user => Factory(:user, :email => Factory.next(:email)),
+                      :group_id => 0)
         @user.feed.include?(mp3).should be_false
       end
       
       it "should include the microposts of followed users" do
         followed = Factory(:user, :email => Factory.next(:email))
-        mp3 = Factory(:micropost, :user => followed)
+        mp3 = Factory(:micropost, :user => followed, :group_id => 0)
         @user.follow!(followed)
         @user.feed.should include(mp3)
       end
@@ -277,6 +274,49 @@ describe User do
         @user.destroy
         @follower.following.should_not include(@user)
       end
+    end
+  end
+
+  describe "group associations" do
+  
+    before(:each) do
+      @user = User.create(@attr)
+      @g1 = Factory(:group, :user => @user, :created_at => 1.day.ago)
+      @g2 = Factory(:group, :user => @user, :created_at => 1.hour.ago)
+      @g3 = Factory(:group, :user => @user, :created_at => 1.minute.ago)
+    end
+    
+    it "should have a groups attribute" do
+      @user.should respond_to(:groups)
+    end
+    
+    it "should have the right groups in the right order" do
+      @user.groups.should == [@g1, @g2, @g3]
+    end
+    
+    # Probably don't want this behavior
+    #it "should destroy associated groups" do
+      #@user.destroy
+      #[@g1,@g2,@g3].each do |group|
+      #  group.find_by_id(group.id).should be_nil
+      #end
+    #end
+
+  end
+  
+  describe "rosters" do
+    before(:each) do
+      @user = Factory(:user, :email => Factory.next(:email))
+      @group = Factory(:group)
+      @roster = @user.rosters.create(:name => "J Team", :group_id => @group.id)
+    end
+    
+    it "should have a rosters method" do
+      @user.should respond_to(:rosters)
+    end
+    
+    it "should have the correct roster" do
+      @user.rosters.should include(@roster)
     end
   end
 end

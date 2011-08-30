@@ -1,9 +1,26 @@
-<li>
-  <%= gravatar_for user, :size => 30 %>
-  <%= link_to user.name, user %>
-  <% if current_user.admin? %>
-    <%= link_to "delete", user, :method => :delete, :confirm => "You sure?",
-                                :title => "Delete #{user.name}" %>
+<tr>
+  <td class="user">
+    <%= gravatar_for user, :size => 30 %>
+    <%= link_to user.name, user %>
+  </td>
+
+  <% if @group.nil? and current_user.admin? %>
+    <td>
+      <%= link_to "delete", user, :method => :delete, :confirm => "You sure?",
+                                  :title => "Delete #{user.name}" %>
+    </td>
   <% end %>
-</li>
+  
+  <% if !@group.nil? and @title == "Members" %>
+    <td>
+      <% if @group.rosters.find_by_user_id(user) %>
+        <%= link_to @group.rosters.find_by_user_id(user).name,
+                    user.rosters.find_by_group_id(@group) %>
+      <% end %>
+    </td>
+  <% end %>
+
+  <%= render :partial => 'groups/member_form', :locals => { :user => user } %>
+
+</tr>
 

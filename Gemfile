@@ -13,6 +13,9 @@ gem 'uglifier'
 
 gem 'jquery-rails'
 
+gem 'haml'
+gem 'haml-rails', :group => :development
+
 gem 'execjs'
 gem 'therubyracer'
 

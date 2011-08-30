@@ -40,7 +40,7 @@ describe UsersController do
         get :index
         # @users.each do |user|
         @users[0..2].each do |user|
-          response.should have_selector("li", :content => user.name)
+          response.should have_selector("td", :content => user.name)
         end
       end
       
@@ -86,6 +86,7 @@ describe UsersController do
     
     before(:each) do
       @user = Factory(:user)
+      test_sign_in(@user)
     end
     
     it "should be successful" do
@@ -114,9 +115,9 @@ describe UsersController do
     end
     
     it "should show the user's microposts" do
-      mp1 = Factory(:micropost, :user => @user, :content => "Foo bar")
-      mp2 = Factory(:micropost, :user => @user, :content => "Baz quux")
-      get :show, :id => @user
+      mp1 = Factory(:micropost, :user => @user, :content => "Foo bar", :group_id => 0)
+      mp2 = Factory(:micropost, :user => @user, :content => "Baz quux", :group_id => 0)
+      get :show, :id => @user, :group_id => 0
       response.should have_selector("span.content", :content => mp1.content)
       response.should have_selector("span.content", :content => mp2.content)
     end
@@ -124,11 +125,28 @@ describe UsersController do
     it "should have the right follower/following counts" do
       other_user = Factory(:user, :email => Factory.next(:email))
       other_user.follow!(@user)
+      @user.toggle!(:admin)
       get :show, :id => @user
       response.should have_selector("a", :href => following_user_path(@user),
                                          :content => "0 following")
       response.should have_selector("a", :href => followers_user_path(@user),
                                          :content => "1 follower")
+    end
+    
+    it "should show the user's groups" do
+      g1 = Factory(:group, :user => @user, :name => "FUFL", :affiliation => "nfl")
+      g2 = Factory(:group, :user => @user, :name => "ESFL", :affiliation => "nfl")
+      get :show, :id => @user
+      response.should have_selector("a", :href => group_path(g1), :content => g1.name)
+      response.should have_selector("a", :href => group_path(g2), :content => g2.name)
+    end
+    
+    it "should show the user's rosters" do
+      r1 = Factory(:roster, :user => @user, :name => "KickAss")
+      r2 = Factory(:roster, :user => @user, :name => "Baz quux")
+      get :show, :id => @user
+      response.should have_selector("a", :href => roster_path(r1), :content => r1.name)
+      response.should have_selector("a", :href => roster_path(r2), :content => r2.name)
     end
   end
 
@@ -213,6 +231,10 @@ describe UsersController do
       before(:each) do
         @attr = { :name => "New User", :email => "user@example.com",
                   :password => "foobar", :password_confirmation => "foobar" }
+                  
+        #@attr_confirmed = { :name => "New User", :email => "user@example.com",
+        #          :password => "foobar", :password_confirmation => "foobar",
+        #          :confirmed => true }
       end
 
       it "should create a user" do
@@ -221,20 +243,35 @@ describe UsersController do
         end.should change(User, :count).by(1)
       end
       
-      it "should sign the user in" do
+      it "should not sign the unconfirmed user in" do
         post :create, :user => @attr
-        controller.should be_signed_in
+        controller.should_not be_signed_in
+      end
+      
+      it "should redirect to the sign in page" do
+        post :create, :user => @attr
+        response.should redirect_to(root_path)
       end
 
-      it "should redirect to the user show page" do
+      it "should have a 'Thanks' message" do
         post :create, :user => @attr
-        response.should redirect_to(user_path(assigns(:user)))
+        flash[:success].should =~ /thanks for signing up/i
       end
+      
+      #it "should sign the user in" do
+      #  post :create, :user => @attr_confirmed
+      #  controller.should be_signed_in
+      #end
 
-      it "should have a welcome message" do
-        post :create, :user => @attr
-        flash[:success].should =~ /welcome to the sample app/i
-      end
+      #it "should redirect to the user show page" do
+      #  post :create, :user => @attr_confirmed
+      #  response.should redirect_to(user_path(assigns(:user)))
+      #end
+
+      #it "should have a welcome message" do
+      #  post :create, :user => @attr_confirmed
+      #  flash[:success].should =~ /welcome to xfl media world/i
+      #end
     end
   end
   

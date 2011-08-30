@@ -3,8 +3,9 @@ require 'spec_helper'
 describe Micropost do
 
   before(:each) do
-    @user = Factory(:user)
-    @attr = { :content => "value for content" }
+    @user = Factory(:user, :email => Factory.next(:email))
+    @group = Factory(:group)
+    @attr = { :content => "value for content", :group_id => @group.id }
   end
   
   it "should create a new instance given valid attributes" do
@@ -24,6 +25,15 @@ describe Micropost do
     it "should have the right associated user" do
       @micropost.user_id.should == @user.id
       @micropost.user.should == @user
+    end
+    
+    it "should have a group attribute" do
+      @micropost.should respond_to(:group)
+    end
+    
+    it "should have the right associated group" do
+      @micropost.group_id.should == @group.id
+      @micropost.group.should == @group
     end
   end
   
@@ -48,9 +58,9 @@ describe Micropost do
       @other_user = Factory(:user, :email => Factory.next(:email))
       @third_user = Factory(:user, :email => Factory.next(:email))
 
-      @user_post  = @user.microposts.create!(:content => "foo")
-      @other_post = @other_user.microposts.create!(:content => "bar")
-      @third_post = @third_user.microposts.create!(:content => "baz")
+      @user_post  = @user.microposts.create!(:content => "foo", :group_id => 0)
+      @other_post = @other_user.microposts.create!(:content => "bar", :group_id => 0)
+      @third_post = @third_user.microposts.create!(:content => "baz", :group_id => 0)
 
       @user.follow!(@other_user)
     end

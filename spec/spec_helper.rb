@@ -29,6 +29,10 @@ RSpec.configure do |config|
     controller.sign_in(user)
   end
   
+  def test_set_current_group(group)
+    controller.set_current_group(group)
+  end
+  
   def integration_sign_in(user)
     visit signin_path
     fill_in :email,    :with => user.email

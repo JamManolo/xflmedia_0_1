@@ -31,8 +31,8 @@ describe "Users" do
           fill_in "Confirmation", :with => "foobar"
           click_button
           response.should have_selector("div.flash.success",
-                                        :content => "Welcome")
-          response.should render_template('users/show')
+                                        :content => "Thanks")
+          response.should render_template('home')
         end.should change(User, :count).by(1)
       end
     end
@@ -65,6 +65,7 @@ describe "Users" do
   
     it "should follow another user" do
       user = Factory(:user)
+      user.toggle!(:admin) #jmc
       other_user = Factory(:user, :email => "what@ever.com")
       lambda do
         integration_sign_in(user)
@@ -76,6 +77,7 @@ describe "Users" do
     
     it "should unfollow another user" do
       user = Factory(:user)
+      user.toggle!(:admin) #jmc
       other_user = Factory(:user, :email => "what@ever.com")
       integration_sign_in(user)
       user.follow!(other_user)

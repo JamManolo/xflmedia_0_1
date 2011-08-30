@@ -46,6 +46,13 @@ describe SessionsController do
         @user = Factory(:user)
         @attr = { :email => @user.email, :password => @user.password }
       end
+      
+      it "should not sign the unconfirmed user in" do
+        @user.toggle!(:confirmed)
+        post :create, :session => @attr
+        controller.current_user.should == nil
+        controller.should_not be_signed_in
+      end
 
       it "should sign the user in" do
         post :create, :session => @attr

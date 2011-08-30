@@ -2,6 +2,7 @@ module ApplicationHelper
 
   def logo
     image_tag("favicon-05-rounded.gif", :alt => "XFL Media 0.1", :class => "round")
+    #image_tag("jmc.png", :alt => "XFL Media 0.1", :class => "round")
   end
 
   # Return a title on a per-page basis.

@@ -3,8 +3,10 @@
 }
 
 body {
-  background: #cff;
+  // background: #cff;
+  background: #777
 }
+
 
 header {
   padding-top: 20px;
@@ -12,7 +14,7 @@ header {
 
 header img {
   padding: 1em;
-  background: #fff;
+  background: #777;
 }
 
 section {
@@ -123,13 +125,76 @@ table.profile {
 td.main {
   width: 70%;
   padding: 1em;
+  vertical-align: top;
+}
+
+tbody tr.sidebar:nth-child(even) td {
+ background: #ccc;  
+}
+
+table.sidebar tbody tr:nth-child(even) td {
+ background: #ccc;  
+}
+
+table.profile table caption {
+  font-weight:bold;
+}
+
+table.jmcjmc td a {
+  //font-weight: bold;
+}
+
+table.jmcjmc td {
+  text-align: center;
 }
 
 td.sidebar {
   width: 30%;
   padding: 1em;
   vertical-align: top;
-  background: #ffc;
+  //background: #ffc;
+  background: #ccc;
+
+}
+
+form.new_group label, form.edit_group label {
+  //font-weight: normal;
+  float: left;
+  width: 240px;
+  //width: 200px;
+  text-align: right;
+}
+
+form.new_group input, form.new_group select {
+  margin-left: 10px;
+  width: 230px;
+}
+
+fieldset.jmc {
+//  margin-bottom: 30px;
+}
+
+fieldset div.pos_field select {
+  margin-left: 10px;
+  width: 50px;
+}
+
+form.edit_group input, form.edit_group select {
+  margin-left: 10px;
+  width: 230px;
+}
+
+span.fieldnote {
+  margin-top: 0px;
+  margin-left: 250px;
+  display: block;
+  font-size: 75%;
+  color: #666;
+}
+  
+/* quick hack for visual testing */
+table.jmc {
+  border: 1px dotted red;
 }
 
 .profile img.gravatar {
@@ -139,10 +204,15 @@ td.sidebar {
 
 /* A wafer-thin amount of CSS for the signup form */
 div.field, div.actions {
-  margin-bottom: 10px;
+  margin: 0;
+  padding: 0;
+//  margin-bottom: 10px;
 }
 
 /* Styling for error messages */
+ul.scoring_fields div.field_with_errors {
+  display: inline;
+}
 
 .field_with_errors {
   margin-top: 10px;
@@ -194,6 +264,106 @@ ul.users {
   list-style: none;
 }
 
+/*
+table.microposts tr td.micropost {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding-top: 10px;
+}
+*/
+
+table.users {
+  margin-top: 1em;
+  vertical-align: top;
+}
+
+table.users tr td.user {
+  display: block;
+}
+
+table.users tr td.edit_membership {
+  width: 1px;
+  //height: 1px;
+}
+
+form.edit_membership {
+ margin: 0;
+ padding: 0;
+ //border: 1px dotted red;  
+}
+
+form.edit_membership div.actions {
+  margin: 0;
+  padding: 0;
+  //border: 1px dotted blue;
+}
+
+/* Styling for the 'All groups' and 'All rosters' page */
+table.groups {
+  margin-top: 1em;
+}
+
+table.groups tr td.group span.timestamp {
+  display: block;
+  font-size: 85%;
+  color: #666;
+}
+
+table.groups tr td.attr {
+  font-size: 85%;
+  color: #667;
+}
+
+table.jmc tr.sidebar td.jmc {
+  color: #a11;
+}
+
+td.jmc {
+  color: #1a1;
+}
+
+tr.sidebar td {
+  font-size: 85%;
+  color: #667;
+}
+
+table.sidebar tr td {
+  font-size: 85%;
+  color: #667;
+}
+
+td.attr {
+  font-size: 85%;
+  color: #667;
+}
+
+table.groups tr td.attr span.attr {
+  display: block;
+  color: #667;
+}
+
+table.rosters {
+  margin-top: 1em;
+}
+
+table.rosters tr td.roster span.timestamp {
+  display: block;
+  font-size: 85%;
+  color: #666;
+}
+
+table.lineup_formats {
+  margin-top: 1em;
+}
+
+table.lineup_formats tr td.lineup_format span.timestamp {
+  display: block;
+  font-size: 85%;
+  color: #666;
+}
+
+
+
 /* Styling for microposts */
 
 h1.micropost {
@@ -212,6 +382,12 @@ table.microposts tr td.gravatar {
   border-top: 1px solid #ccc;
   vertical-align: top;
   width: 50px;
+}
+
+table.microposts tr td.gravatarsmall {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  width: 30px;
 }
 
 table.microposts tr td.micropost {
@@ -251,3 +427,40 @@ form.new_micropost textarea {
   margin-bottom: 0;
 }
 
+/* Button from oregon athletic club, of all places */
+.button-small{
+			display:inline-block;
+			width:auto;
+			white-space:nowrap;
+			height:32px;
+			margin:5px 5px 0 0;
+			padding:0 22px;
+			text-decoration:none;
+			text-align:center;
+			font-weight:bold;
+			font-style:normal;
+			font-size:15px;
+			line-height:32px;
+			cursor:pointer;
+			border:0;
+			-moz-border-radius:4px;
+			border-radius:4px;
+			-webkit-border-radius:4px;
+			vertical-align:top;
+}
+.button-small{
+			float:none;
+			display:inline-block;
+			height:auto;
+			line-height:18px !important;
+			padding:2px 15px !important;
+			font-size:11px !important;
+}
+.button-small:link,.button-small:active,.button-small:visited,.button-small{
+			background-color:#336699;
+			color:#ffffff;
+}
+.button-small:hover{
+			background-color:#1e5781;
+			color:#ffffff;
+}

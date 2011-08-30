@@ -43,7 +43,7 @@ describe MicropostsController do
     describe "success" do
 
       before(:each) do
-        @attr = { :content => "Lorem ipsum" }
+        @attr = { :content => "Lorem ipsum", :group_id => 0}
       end
 
       it "should create a micropost" do
@@ -72,7 +72,7 @@ describe MicropostsController do
         @user = Factory(:user)
         wrong_user = Factory(:user, :email => Factory.next(:email))
         test_sign_in(wrong_user)
-        @micropost = Factory(:micropost, :user => @user)
+        @micropost = Factory(:micropost, :user => @user, :group_id => 0)
       end
 
       it "should deny access" do
@@ -85,7 +85,7 @@ describe MicropostsController do
 
       before(:each) do
         @user = test_sign_in(Factory(:user))
-        @micropost = Factory(:micropost, :user => @user)
+        @micropost = Factory(:micropost, :user => @user, :group_id => 0)
       end
 
       it "should destroy the micropost" do

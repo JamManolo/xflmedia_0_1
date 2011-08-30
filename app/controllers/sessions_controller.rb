@@ -2,6 +2,8 @@ class SessionsController < ApplicationController
 
   def new
     @title = "Sign in"
+    @email_prefill = params[:email].nil? ? '' : params[:email]
+    #Session.new(email_prefill)
   end
   
   def create
@@ -10,6 +12,11 @@ class SessionsController < ApplicationController
     if user.nil?
       flash.now[:error] = "Invalid email/password combination."
       @title = "Sign in" 
+      render 'new'
+    elsif !user.confirmed?
+      flash.now[:error] = "This account is awaiting confirmation. " +
+                          "Please check confirmation email for instructions."
+      @title = "Sign in"
       render 'new'
     else
       # Sign the user in and redirect to the user's show page

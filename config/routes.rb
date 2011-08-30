@@ -1,17 +1,26 @@
 Xflmedia01::Application.routes.draw do
 
-  # I prefer the match implementation (exercise 11.5.7, /users/1/microposts),
-  # so I placed it first to override the recommended nested routes approach.
   match "/users/:id/microposts", :to => "users#show"
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :leagues, :confirm
     end
-    resources :microposts, :only => :index
   end
   resources :sessions,      :only => [:new, :create, :destroy]
   resources :microposts,    :only => [:create, :destroy, :index]
   resources :relationships, :only => [:create, :destroy]
+  resources :groups do
+    member do
+      get :members, :edit_membership, :transfer_roster, :new_invitation
+      post :send_invitation, :accept_invitation
+    end
+  end
+  resources :rosters
+  resources :memberships,   :only => [:create, :destroy]
+  resources :league_formats
+  resources :lineup_formats
+  resources :scoring_formats
+  resources :invitations
     
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
@@ -20,11 +29,28 @@ Xflmedia01::Application.routes.draw do
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
+
+  match '/details/template'      => 'details#template'  
+  match '/details/league_type'   => 'details#league_type'
+  match '/details/comp_type'     => 'details#comp_type'
+  match '/details/divisions'     => 'details#divisions'
+  match '/details/yardage'       => 'details#yardage'  
+  match '/details/yardage_bonus' => 'details#yardage_bonus'
+  match '/details/playoffs'      => 'details#playoffs'
+  match '/details/pts_allowed'   => 'details#pts_allowed'
+  match '/details/yds_allowed'   => 'details#yds_allowed'
   
-  get "pages/home"
-  get "pages/contact"
-  get "pages/about"
-  get "pages/help"
+  match '/groups/send_invitation'    => 'groups#send_invitation'
+  match '/groups/accept_invitation'  => 'groups#accept_invitation'
+  
+  # match 'add_member', :to => 'groups#add_member'
+  #get "details/divisions"
+  #get "details/league_type"
+  #get "details/comp_type"
+  #get "pages/home"
+  #get "pages/contact"
+  #get "pages/about"
+  #get "pages/help"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
