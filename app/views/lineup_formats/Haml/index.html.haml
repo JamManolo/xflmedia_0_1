@@ -1,0 +1,9 @@
+%table
+ %tr
+  %td.main
+   %h1 All lineup formats
+   %span.content= link_to "Create a lineup format (HAML)", new_lineup_format_path
+   = unless @lineup_formats.empty?
+    %table.lineup_formats
+     = render @lineup_formats
+

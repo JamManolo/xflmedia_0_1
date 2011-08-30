@@ -1,0 +1,58 @@
+%ul.scoring_fields
+ %li
+  %span.scoring_field_left
+   = f.label :pat_pts, "Extra Points Made"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :pat_pts, (0..1), @title =~ /edit/i ? '' : :selected => 1
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :pat_missed_pts, "Extra Points Missed"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :pat_missed_pts, [0,-1]
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :fg_0039_pts, "Fields Goals Made"
+  %span.scoring_field_center
+   0-39 yds
+  %span.scoring_field_right
+   \=
+   = f.select :fg_0039_pts, (0..3), @title =~ /edit/i ? '' : :selected => 3
+   points
+ %li
+  %span.scoring_field_left
+   %br
+   - f.label :fg_4049_pts, "Fields Goals 40-49 yds"
+  %span.scoring_field_center
+   40-49 yds
+  %span.scoring_field_right
+   \=
+   = f.select :fg_4049_pts, (0..6), @title =~ /edit/i ? '' : :selected => 4
+   points
+ %li
+  %span.scoring_field_left
+   %br
+   - f.label :fg_5099_pts, "Fields Goals 50+ yds"
+  %span.scoring_field_center
+   50+ yds
+  %span.scoring_field_right
+   \=
+   = f.select :fg_5099_pts, (0..6), @title =~ /edit/i ? '' : :selected => 5
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :fg_missed_pts, "Field Goals Missed"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :fg_missed_pts, [0,-1,-2,-3,-4,-5,-6]
+   points
+

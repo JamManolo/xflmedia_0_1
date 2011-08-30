@@ -1,0 +1,203 @@
+%ul.scoring_fields
+ %li
+  %span.scoring_field_left
+   = f.label :d_safety_pts, "Safety"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :d_safety_pts, [0,2],
+     @title =~ /edit/i ? '' : :selected => 2
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :d_fr_pts, "Fumble Recovery"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :d_fr_pts, [0,1,2],
+     @title =~ /edit/i ? '' : :selected => 2
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :d_int_pts, "Interception"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :d_int_pts, [0,1,2],
+     @title =~ /edit/i ? '' : :selected => 2
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :d_sack_pts, "Sack"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :d_sack_pts, [0,1,2],
+     @title =~ /edit/i ? '' : :selected => 1
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :d_block_kick_pts, "Blocked Kick"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :d_block_kick_pts, [0,1,2],
+     @title =~ /edit/i ? '' : :selected => 2
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :d_shutout_pts, "Points Allowed"
+  %span.scoring_field_center shutout
+  %span.scoring_field_right
+   \=
+   = f.select :d_shutout_pts, (0..20),
+     @title =~ /edit/i ? '' : :selected => 14
+   points
+  %span.detail
+   = link_to "Details", '/details/pts_allowed', :rel => "external"
+ %li
+  %span.scoring_field_left
+   = f.select :d_pts_allowed_level_1, (0..20),
+     @title =~ /edit/i ? '' : :selected => 6
+  %span.scoring_field_center
+   or less
+  %span.scoring_field_right
+   \=
+   = f.select :d_pts_allowed_level_1_pts,(0..20),
+     @title =~ /edit/i ? '' : :selected => 7
+   points
+ %li
+  %span.scoring_field_left
+   = f.select :d_pts_allowed_level_2, (0..20),
+     @title =~ /edit/i ? '' : :selected => 13
+  %span.scoring_field_center
+   or less
+  %span.scoring_field_right
+   \=
+   = f.select :d_pts_allowed_level_2_pts, (0..20),
+     @title =~ /edit/i ? '' : :selected => 3
+   points
+ %li
+  %span.scoring_field_left
+   = f.select :d_pts_allowed_level_3, (0..20),
+     @title =~ /edit/i ? '' : :selected => 20
+  %span.scoring_field_center
+   or less
+  %span.scoring_field_right
+   \=
+   = f.select :d_pts_allowed_level_3_pts, (0..20)
+   points
+ %li
+  %span.scoring_field_left
+   = f.select :d_pts_allowed_level_7, (28..99)
+  %span.scoring_field_center
+   or more
+  %span.scoring_field_right
+   \=
+   = f.select :d_pts_allowed_level_7_pts, (-20..0),
+     @title =~ /edit/i ? '' : :selected => 0
+   points
+ %li
+  %span.scoring_field_left
+   = f.select :d_pts_allowed_level_8, (28..99),
+     @title =~ /edit/i ? '' : :selected => 35
+  %span.scoring_field_center
+   or more
+  %span.scoring_field_right
+   \=
+   = f.select :d_pts_allowed_level_8_pts, (-20..0),
+     @title =~ /edit/i ? '' : :selected => -3
+   points
+ %li
+  %span.scoring_field_left
+   = f.select :d_pts_allowed_level_9, (28..99),
+     @title =~ /edit/i ? '' : :selected => 42
+  %span.scoring_field_center
+   or more
+  %span.scoring_field_right
+   \=
+   = f.select :d_pts_allowed_level_9_pts, (-20..0),
+     @title =~ /edit/i ? '' : :selected => -7
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :d_yds_allowed_level_1, "Yards Allowed"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   %br
+ %li
+  %span.scoring_field_left
+   = f.select :d_yds_allowed_level_1, [0,99,149,199,249,299],
+     @title =~ /edit/i ? '' : :selected => 99
+  %span.scoring_field_center
+   or less
+  %span.scoring_field_right
+   \=
+   = f.select :d_yds_allowed_level_1_pts, (0..20),
+     @title =~ /edit/i ? '' : :selected => 10
+   points
+  %span.detail
+   = link_to "Details", '/details/yds_allowed', :rel => "external"
+ %li
+  %span.scoring_field_left
+   = f.select :d_yds_allowed_level_2, [0,99,149,199,249,299],
+     @title =~ /edit/i ? '' : :selected => 199
+  %span.scoring_field_center
+   or less
+  %span.scoring_field_right
+   \=
+   = f.select :d_yds_allowed_level_2_pts, (0..20),
+     @title =~ /edit/i ? '' : :selected => 5
+   points
+ %li
+  %span.scoring_field_left
+   = f.select :d_yds_allowed_level_3, [0,99,149,199,249,299],
+     @title =~ /edit/i ? '' : :selected => 299
+  %span.scoring_field_center
+   or less
+  %span.scoring_field_right
+   \=
+   = f.select :d_yds_allowed_level_3_pts, (0..20),
+     @title =~ /edit/i ? '' : :selected => 0
+   points
+ %li
+  %span.scoring_field_left
+   = f.select :d_yds_allowed_level_7, [300,350,400,450,500]
+  %span.scoring_field_center
+   or more
+  %span.scoring_field_right
+   \=
+   = f.select :d_yds_allowed_level_7_pts, (-20..0),
+     @title =~ /edit/i ? '' : :selected => 0
+   points   
+ %li
+  %span.scoring_field_left
+   = f.select :d_yds_allowed_level_8, [300,350,400,450,500],
+     @title =~ /edit/i ? '' : :selected => 400
+  %span.scoring_field_center
+   or more
+  %span.scoring_field_right
+   \=
+   = f.select :d_yds_allowed_level_8_pts, (-20..0),
+     @title =~ /edit/i ? '' : :selected => -5
+   points   
+ %li
+  %span.scoring_field_left
+   = f.select :d_yds_allowed_level_9, [300,350,400,450,500],
+     @title =~ /edit/i ? '' : :selected => 500
+  %span.scoring_field_center
+   or more
+  %span.scoring_field_right
+   \=
+   = f.select :d_yds_allowed_level_9_pts, (-20..0),
+     @title =~ /edit/i ? '' : :selected => -10
+   points      
+   
+   
+

@@ -1,0 +1,8 @@
+<div class="stats">
+  <a href="<%= leagues_user_path(@user) %>">
+    <span id="leagues" class="stat">
+      <%= pluralize(@user.leagues.count, "membership") %>
+    </span>
+  </a>
+</div>
+

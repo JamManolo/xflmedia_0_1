@@ -1,0 +1,37 @@
+= render 'shared/error_messages', :object => f.object
+.pos_field
+ = f.label :qb, "Quarterback (QB)"
+ = f.select :qb, (0..2), @title =~ /edit/i ? '' :  :selected => 1
+.pos_field
+ = f.label :rb, "Running Back (RB)"
+ = f.select :rb, (0..4).to_a, @title =~ /edit/i ? '' : :selected => 2
+.pos_field
+ = f.label :wr, "Wide Receiver (WR)"
+ = f.select :wr, (0..4).to_a, @title =~ /edit/i ? '' : :selected => 2
+.pos_field
+ = f.label :te, "Tight End (TE)"
+ = f.select :te, (0..2).to_a, @title =~ /edit/i ? '' : :selected => 1
+.pos_field
+ = f.label :k, "Kicker (K)"
+ = f.select :k, (0..1).to_a, @title =~ /edit/i ? '' : :selected => 1
+.pos_field
+ = f.label :dst, "Def/ Special Teams (DST)"
+ = f.select :dst, (0..1).to_a, @title =~ /edit/i ? '' : :selected => 1
+.pos_field
+ = f.label :idp, "Defensive Player (IDP)"
+ = f.select :idp, (0..1).to_a, @title =~ /edit/i ? '' : :selected => 1
+.pos_field
+ = f.label :flex, "Flex (RB/WR)"
+ = f.select :flex, (0..1).to_a, @title =~ /edit/i ? '' : :selected => 0
+ %span.detail
+  = link_to "Details", '/details/template', :rel => "external"
+.pos_field
+ = f.label :ir, "Injured Reserve (IR)"
+ = f.select :ir, (0..3).to_a, @title =~ /edit/i ? '' : :selected => 0
+ %span.detail
+  = link_to "Details", '/details/template', :rel => "external"
+.pos_field
+ = f.label :bench, "Bench (BN)"
+ = f.select :bench, (0..9).to_a, @title =~ /edit/i ? '' : :selected => 6
+ %span.detail
+  = link_to "Details", '/details/template', :rel => "external"

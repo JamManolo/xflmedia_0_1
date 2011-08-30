@@ -1,0 +1,80 @@
+<table class="profile" summary="Profile information">
+  <tr>
+    <td class="main">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+      <%= render 'follow_form' if signed_in? %>
+      <% @open_invitations = open_invitations(@user) %>
+      <% unless @open_invitations.nil? or @open_invitations.empty? %>
+        <table class="open_invitations" summary="Open invitations">
+         <caption>My Open Invitations</caption>
+          <%= render @open_invitations %>
+        </table>
+      <% end %>
+      <% unless @user.microposts.empty? %>
+        <table class="microposts" summary="User microposts">
+         <caption>My Posts</caption>
+          <%= render @microposts %>
+        </table>
+        <%= will_paginate @microposts %>
+      <% end %>
+      <% unless @user.groups.empty? %>
+        <table class="groups">
+          <caption>I serve as Commissioner for</caption>
+          <%= render @groups %>
+        </table>
+        <%= will_paginate @groups %>
+      <% end %>
+      <% unless @user.rosters.empty? %>
+        <table class="rosters">
+          <caption>Owns teams</caption>
+          <%= render @rosters %>
+        </table>
+        <%= will_paginate @rosters %>
+      <% end %>
+      <% unless @user.leagues.empty? or !current_user.admin? %>
+        <table class="groups">
+          <caption>Group member of</caption>
+          <%= render @leagues %>
+        </table>
+        <%= will_paginate @leagues %>
+      <% end %>
+    </td>
+    <td class="sidebar round">
+      <table>
+        <tr class="sidebar">
+          <td><strong>Name</strong></td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>URL</strong></td>
+          <td><%= link_to user_path(@user), @user %> </td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>Posts</strong></td>
+          <td><%= @user.microposts.count %> </td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>Groups</strong></td>
+          <td><%= @user.groups.count %> </td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>Rosters</strong></td>
+          <td><%= @user.rosters.count %> </td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>Rosters</strong></td>
+          <td><%= @user.rosters.count %> </td>
+        </tr>
+        <tr class="sidebar">
+          <td colspan="2"><%= render 'shared/league_stats' %></td>
+        </tr>
+        <tr class="sidebar">
+          <td colspan="2"><%= render 'shared/stats' %></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

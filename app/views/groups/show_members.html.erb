@@ -1,0 +1,18 @@
+<table class="profile" summary="Information about group members">
+  <tr>
+    <td class="main">
+      <h1><%= @title %></h1>
+      <% unless @group.members.empty? %>
+        <table class="users">
+          <%= render @group.members %>
+        </table>
+      <% end %>
+    </td>
+    <td class="sidebar round">
+      <strong>Name</strong> <%= @group.name %><br />
+      <strong>URL</strong> <%= link_to group_path(@group), @group %><br />
+      <strong>Members</strong><%= render 'shared/member_stats' %>
+    </td>
+  </tr>
+</table>
+

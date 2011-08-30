@@ -1,0 +1,9 @@
+- if !user.nil? and !@group.nil?
+ %td.edit_membership{:id => "member_form" }
+  - if @group.is_member?(user)
+   = render :partial => 'groups/setup',
+            :locals => { :user => user, :group => @group }
+  - else
+   = render :partial => 'groups/accept',
+            :locals => { :user => user, :group => @group }
+

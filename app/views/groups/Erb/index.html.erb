@@ -1,0 +1,17 @@
+<table class="" summary="All groups">
+  <tr>
+    <td class="main">
+      <h1>All groups</h1>
+      <span class="content">
+        <%= link_to "Create a new group", new_group_path %>
+      </span>
+      <% unless @groups.empty? %>
+        <table class="groups" summary="All groups">
+          <%= render @groups %>
+        </table>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+

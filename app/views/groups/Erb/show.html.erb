@@ -1,0 +1,177 @@
+<table class="profile" summary="Group information">
+  <tr>
+    <td class="main">
+      <h1>
+        <%= @group.name %>
+      </h1>
+      <% if !@group.user.nil? %>
+        <h3>
+          created by <%= link_to @group.user.name, @group.user %>
+        </h3>
+      <% end %>
+      <h3>
+        for fun with the <%= @group.affiliation.upcase %>
+      </h3>
+      
+      <hr>
+      <% unless @micropost.nil? %>
+        <h1 class="micropost">What's up?</h1>
+        <%= render 'shared/micropost_form' %>
+      <% end %>
+      <%= render 'shared/feed' %>
+      <hr>
+      
+      <% unless @group.rosters.empty? %>
+        <table class="rosters">
+          <caption> <%= pluralize(@group.rosters.length, "Member Team") %> </caption>
+          <%= render @group.rosters %>
+        </table>
+      <% end %>
+    </td>
+    
+    <td class="sidebar round">
+      <% if current_user?(@group.user) %>
+        <table>
+          <tr class="">
+            <td colspan="2" style="text-align:center">
+              <strong>Group Management</strong>
+            </td>
+          </tr>
+          <tr class="sidebar">
+             <td colspan="1">
+               <%= link_to "Properties", edit_group_path(@group) %>
+             </td>
+             <td colspan="1">
+               <%= link_to "Membership", edit_membership_group_path(@group) %>
+             </td>
+         </tr>
+       </table>
+      <% end %>
+
+      <table>
+        <tr class="">
+          <td colspan="2" style="text-align:center">
+            <strong>Group Information</strong>
+          </td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>Name</strong></td>
+          <td><%= @group.name %></td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>URL</strong></td>
+          <td><%= link_to group_path(@group), @group %> </td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>Members</strong></td>
+          <td><%= render 'shared/member_stats' %></td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>Type</strong></td>
+          <td><%= @group.league_type.capitalize %></td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>Competition</strong></td>
+          <td><%= @group.comp_type.capitalize %></td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>Size</strong></td>
+          <td><%= @group.size != 0 ? pluralize(@group.size, "team") : "Open" %></td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>Structure</strong></td>
+          <td> <%= pluralize(@group.divcount, "division") %> </td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>Reg Season</strong></td>
+          <td> <%= pluralize(@group.sched_format.split(':').first, "week") %> </td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>Playoffs</strong></td>
+          <td> <%= @group.sched_format.split(':').last == "0" ? "none" :
+                   pluralize( @group.sched_format.split(':').last, "week") %> </td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>Roster</strong></td>
+          <td> <%= @lineup_format.roster_size %> players </td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>Starters</strong></td>
+          <td> <%= @lineup_format.lineup_size %> players </td>
+        </tr>
+        <% unless @lineup_format.qb == 0 %>
+          <tr class="sidebar">
+            <td><strong>QB</strong></td>
+            <td> <%= @lineup_format.qb %> </td>
+          </tr>
+        <% end %>
+        <% unless @lineup_format.rb == 0 %>
+          <tr class="sidebar">
+            <td><strong>RB</strong></td>
+            <td> <%= @lineup_format.rb %> </td>
+          </tr>
+        <% end %>
+        <% unless @lineup_format.wr == 0 %>
+          <tr class="sidebar">
+            <td><strong>WR</strong></td>
+            <td> <%= @lineup_format.wr %> </td>
+          </tr>
+        <% end %>
+        <% unless @lineup_format.flex == 0 %>
+          <tr class="sidebar">
+            <td><strong>RB/WR</strong></td>
+            <td> <%= @lineup_format.flex %> </td>
+          </tr>
+        <% end %>
+        <% unless @lineup_format.te == 0 %>
+          <tr class="sidebar">
+            <td><strong>TE</strong></td>
+            <td> <%= @lineup_format.te %> </td>
+          </tr>
+        <% end %>
+        <% unless @lineup_format.k == 0 %>
+          <tr class="sidebar">
+            <td><strong>K</strong></td>
+            <td> <%= @lineup_format.k %> </td>
+          </tr>
+        <% end %>
+        <% unless @lineup_format.dst == 0 %>
+          <tr class="sidebar">
+            <td><strong>D/ST</strong></td>
+            <td> <%= @lineup_format.dst %> </td>
+          </tr>
+        <% end %>
+        <% unless @lineup_format.idp == 0 %>
+          <tr class="sidebar">
+            <td><strong>IDP</strong></td>
+            <td> <%= @lineup_format.idp %> </td>
+          </tr>
+        <% end %>
+        <tr class="sidebar">
+          <td><strong>Roster</strong></td>
+          <td> <%= @lineup_format.roster_format %> </td>
+        </tr>
+        
+        <% if @group.is_member?(current_user) and !@group.member_has_roster?(current_user) %>
+          <tr class="sidebar">
+            <td colspan="2">
+              <%= link_to "Create new roster", new_roster_path(:group => @group) %>
+            </td>
+          </tr>
+          <% if !current_user.rosters.nil? and !current_user.rosters.empty? and
+            !current_user.rosters.find_by_group_id(Group.find_by_name("XFL Homeless").id).nil?
+           %>
+            <tr class="sidebar">
+              <td colspan="2">
+                <%= link_to "Transfer " + 
+                  current_user.rosters.find_by_group_id(Group.find_by_name("XFL Homeless")).name,
+                            transfer_roster_group_path %> from Homeless
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+      
+    </td>
+  </tr>
+</table>

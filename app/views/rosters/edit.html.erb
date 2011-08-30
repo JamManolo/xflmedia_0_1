@@ -1,0 +1,9 @@
+<h1>Edit roster</h1>
+
+<%= form_for(@roster) do |f| %>
+  <%= render 'fields', :f => f %>
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+

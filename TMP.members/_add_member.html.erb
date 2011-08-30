@@ -1,0 +1,5 @@
+<%= form_for current_group.members.build(:user_id => @user.id),
+                                         :remote => true do |f| %>
+  <div><%= f.hidden_field :user_id %></div>
+  <div class="actions"><%= f.submit "Add Member" %></div>
+<% end %>

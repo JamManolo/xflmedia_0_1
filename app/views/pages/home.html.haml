@@ -1,0 +1,19 @@
+- if signed_in?
+ %table.front{:summary => "For signed-in users"}
+  %tr
+   %td.main
+    %h1.micropost What's up?
+    = render 'shared/micropost_form'
+    = render 'shared/feed'
+   %td{:class => "sidebar round"}
+    = render 'shared/user_info'
+    = render 'shared/stats'
+    = render 'shared/league_stats'
+- else
+ %h1 XFL Media
+ %p
+  This is the home page for the
+  = link_to "XFL Media", "http://www.xflmedia.com/"
+  Fantasy Football Management System
+ = link_to "Sign up now!", signup_path, :class => "signup_button round"
+

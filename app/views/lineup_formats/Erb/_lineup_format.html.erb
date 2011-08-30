@@ -1,0 +1,15 @@
+<tr>
+  <td class="lineup_format">
+    <%= link_to lineup_format.name.upcase, lineup_format %>
+    <span class="timestamp">
+      Created <%= time_ago_in_words(lineup_format.created_at) %> ago
+    </span>
+  </td>
+  <% if current_user.admin? %>
+    <td>
+      <%= link_to "delete", lineup_format, :method => :delete,
+                                    :confirm => "You sure?",
+                                    :title => lineup_format.name %>
+    </td>
+  <% end %>
+</tr>

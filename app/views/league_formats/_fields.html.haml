@@ -1,0 +1,45 @@
+= render 'shared/error_messages', :object => f.object
+
+.field
+ = f.label :league_type
+ = f.select :league_type, :Redraft => "redraft", :Keeper => "keeper", 
+                          "Salary cap" => "salary cap", :Dynasty => "dynasty"
+ %span.detail
+  = link_to "Details", '/details/league_type', :rel => "external"
+.field
+ = f.label "Number of Teams"
+ = f.select :team_count, { :open => 0, 8 => 8, 10 => 10, 12 => 12 }, 
+                   @title =~ /edit/i ? '' : :selected => 12              
+.field
+ = f.label "Competition style"
+ = f.select :comp_type, "Head to head" => "head-to-head",
+                        "Total points" => :points,
+                        "Combination"  => :combo
+ %span.detail
+  = link_to "Details", '/details/comp_type', :rel => "external"
+.field
+ = f.label :divisions
+ = f.select :divisions, "None" => 1,
+                        "2 divisions" => 2,
+                        "3 divisions" => 3,
+                        "4 divisions" => 4
+ %span.detail
+  = link_to "Details", '/details/divisions', :rel => "external"
+ %span.fieldnote
+  Note: Available in Head-to-Head leagues only
+.field
+ = f.label "Playoff format"
+ = f.select :sched_format, { "Weeks 14, 15 and 16 (6 teams)" => "13:3",
+                             "Weeks 14, 15 and 16 (8 teams)" => "13:3",
+                             "Weeks 15, 16 and 17 (6 teams)" => "14:3",
+                             "Weeks 15, 16 and 17 (8 teams)" => "14:3",
+                             "Weeks 15 and 16 (4 teams)"  => "14:2",
+                             "Weeks 16 and 17 (4 teams)"  => "15:2",
+                             "No playoffs, 16 week regular season" => "16:0",
+                             "No playoffs, 17 week regular season" => "17:0" },
+                             @title =~ /edit/i ? '' : :selected => "14:3"
+ %span.detail
+  = link_to "Details", '/details/playoffs', :rel => "external"
+ %span.fieldnote
+  Note: Available in Head-to-Head leagues only
+

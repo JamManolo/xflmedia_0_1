@@ -1,0 +1,52 @@
+<table class="profile" summary="Lineup format information">
+  <tr>
+    <td class="main">
+      <h1>
+        Lineup format <%= @lineup_format.name.upcase %>
+      </h1>
+    </td>
+    <td class="sidebar round">
+      <table class="sidebar">
+        <tr>
+          <td><strong>Name</strong></td>
+          <td><%= @lineup_format.name.capitalize %></td>
+        </tr>
+        <tr>
+          <td><strong>URL</strong></td>
+          <td><%= link_to lineup_format_path(@lineup_format), @lineup_format %> </td>
+        </tr>
+        <tr>
+          <td><strong>Quarterback</strong></td><td><%= @lineup_format.qb %></td>
+        </tr>
+        <tr>
+          <td><strong>Running Back</strong></td><td><%= @lineup_format.rb %></td>
+        </tr>
+        <tr>
+          <td><strong>Wide Receiver</strong></td><td><%= @lineup_format.wr %></td>
+        </tr>
+        <tr>
+          <td><strong>Tight End</strong></td><td><%= @lineup_format.te %></td>
+        </tr>
+        <tr>
+          <td><strong>Kicker</strong></td><td><%= @lineup_format.k %></td>
+        </tr>
+        <tr>
+          <td><strong>Defense/Special.Teams</strong></td><td><%= @lineup_format.dst %></td>
+        </tr>
+        <tr>
+          <td><strong>Individual Defensive Player</strong></td><td><%= @lineup_format.idp %></td>
+        </tr>
+        <tr>
+          <td><strong>Flex (RB/WR)</strong></td><td><%= @lineup_format.flex %></td>
+        </tr>
+        <% if current_user.admin? %>
+          <tr class="sidebar">
+             <td colspan="2" style="text-align:center">
+               <%= link_to "Edit lineup_format", edit_lineup_format_path(@lineup_format) %>
+             </td>
+         </tr>
+        <% end %>
+      </table>
+    </td>
+  </tr>
+</table>

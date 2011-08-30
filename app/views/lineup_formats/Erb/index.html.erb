@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <td class="main">
+      <h1> All lineup formats </h1>
+      <% if current_user.admin? %>
+        <span class="content">
+          <%= link_to "Create a new lineup format", new_lineup_format_path %>
+        </span>
+      <% end %>
+      <% unless @lineup_formats.empty? %>
+        <table class="lineup_formats">
+          <%= render @lineup_formats %>
+        </table>
+      <% end %>
+    </td>
+  </tr>
+</table>
+    
+

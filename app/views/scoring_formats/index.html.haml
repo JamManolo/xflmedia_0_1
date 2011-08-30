@@ -1,0 +1,9 @@
+%table
+ %tr
+  %td.main
+   %h1 All scoring formats
+   %span.content= link_to "Create a scoring format (HAML)", new_scoring_format_path
+   = unless @scoring_formats.empty?
+    %table.scoring_formats
+     = render @scoring_formats
+

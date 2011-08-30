@@ -1,0 +1,7 @@
+%p
+ %h1.roster_setup= "Welcome " + current_user.name
+ %strong Just enter your team's name and press 'Create team'
+= form_for current_user.rosters.build(:group_id => group.id) do |f|
+ %div= f.hidden_field :group_id
+ %div= f.text_field :name, :size => 24
+ %div.actions= f.submit "Create Team"

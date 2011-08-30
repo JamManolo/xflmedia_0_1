@@ -1,0 +1,9 @@
+%tr
+ %td.lineup_format
+  = link_to lineup_format.name.upcase, lineup_format
+  %span.timestamp Created = time_ago_in_words(lineup_format.created_at) ago
+  = if current_user.admin? %>
+   %td
+    = link_to "delete", lineup_format, :method => :delete,
+                                       :confirm => "You sure?",
+                                       :title => lineup_format.name %>

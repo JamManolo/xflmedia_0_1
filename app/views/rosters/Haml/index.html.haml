@@ -1,0 +1,9 @@
+%table
+ %tr
+  %td.main
+   %h1 All rosters
+   %span.content= link_to "Create a new roster (HAML)", new_roster_path
+   = unless @rosters.empty?
+    %table.rosters
+     = render @rosters
+

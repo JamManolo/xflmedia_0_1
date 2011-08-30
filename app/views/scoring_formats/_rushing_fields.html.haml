@@ -1,0 +1,61 @@
+%ul.scoring_fields
+ %li
+  %span.scoring_field_left
+   = f.label :rush_tds_pts, "Rushing Touchdowns"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :rush_tds_pts, (0..6), @title =~ /edit/i ? '' : :selected => 6
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :rush_yds_min, "Rushing Yards Base"
+  %span.scoring_field_center
+   = f.select :rush_yds_min, [0, 50, 100]
+   yds
+  %span.scoring_field_right
+   - f.label :rush_yds_min_pts
+   \=
+   = f.select :rush_yds_min_pts, (0..5)
+   points
+  %span.detail
+   = link_to "Details", '/details/yardage', :rel => "external"
+ %li
+  %span.scoring_field_left
+   = f.label :rush_yds_incr, "Rushing Yards Incremental"
+  %span.scoring_field_center
+   = f.select :rush_yds_incr, [10, 20, 25, 50, 100]
+   yds
+  %span.scoring_field_right
+   \=
+   = f.select :rush_yds_incr_pts, [0,1], @title =~ /edit/i ? '' : :selected => 1
+   point
+ %li
+  %span.scoring_field_left
+   = f.label :rush_yds_bonus_min, "Rushing Yards Bonus"
+  %span.scoring_field_center
+   = f.select :rush_yds_bonus_min, [150, 175, 200]
+   or more
+  %span.scoring_field_right
+   - f.label :rush_yds_bonus_min_pts
+   \=
+   = f.select :rush_yds_bonus_min_pts, (0..10)
+   points
+  %span.detail
+   = link_to "Details", '/details/yardage_bonus', :rel => "external"
+ %li
+  %span.scoring_field_left
+   = f.label :rush_tds_pts, "Rushing TD Yards Bonus"
+  %span.scoring_field_center
+   = f.select :rush_tds_bonus_min, [40, 50, 60]
+   or more
+  %span.scoring_field_right
+   \=
+   = f.select :rush_tds_bonus_min_pts, (0..6)
+   points
+  %span.detail
+   = link_to "Details", '/details/yardage_bonus', :rel => "external"
+  
+
+  

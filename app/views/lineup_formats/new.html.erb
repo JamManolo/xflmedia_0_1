@@ -1,0 +1,9 @@
+<h1> <%= @title %> </h1>
+
+<%= form_for(@lineup_format) do |f| %>
+  <%= render 'fields', :f => f %>
+  <div><%= f.hidden_field :group_id %></div>
+  <div class="actions">
+    <%= f.submit "Create your lineup format" %>
+  </div>
+<% end %>

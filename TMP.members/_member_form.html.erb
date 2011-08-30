@@ -1,0 +1,6 @@
+<% unless current_user?(@user) %>
+    <div id="add_member">
+       <%= render 'add_member' %>
+    <% end %>
+  </div>
+<% end %>

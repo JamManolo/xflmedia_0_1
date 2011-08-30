@@ -1,0 +1,6 @@
+%p.roster_setup= "Welcome " + current_user.name
+= form_for current_user.rosters.build(:group_id => group.id), :remote => true do |f|
+ %div= f.hidden_field :group_id
+ %div= f.label :name, "Team name"
+ %div= f.text_field :name, :size => 24
+ %div.actions= f.submit "Create Team"

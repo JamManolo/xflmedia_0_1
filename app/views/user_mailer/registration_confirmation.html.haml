@@ -1,0 +1,6 @@
+%p= @user.name + ','
+%p
+ Thank you for registering with XFL Media!
+%p= link_to "Follow this  link to confirm " + @user.name + "'s account",
+            confirm_user_url(@user, :code => @user.confirmation_code,
+                                    :email => @user.email)

@@ -1,0 +1,13 @@
+<table class="" summary="All rosters">
+  <tr>
+    <td class="main">
+      <h1>All rosters</h1>
+      <% unless @rosters.empty? %>
+        <table class="rosters" summary="All rosters">
+          <%= render @rosters %>
+        </table>
+      <% end %>
+    </td>
+  </tr>
+</table>
+

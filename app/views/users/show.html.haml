@@ -1,0 +1,71 @@
+%table.profile{:summary => "Profile information"}
+ %tr
+  %td.main
+   %h1
+    = gravatar_for @user
+    = @user.name
+   = render 'follow_form' if signed_in? and current_user.admin?
+   - @open_invitations = open_invitations(@user)
+   - unless @open_invitations.nil? or @open_invitations.empty?
+    %table.open_invitations{:summary => "Open invitations"}
+     %caption My Open Invitations
+     = render @open_invitations
+   - @open_rosters = open_rosters(@user)
+   - unless @open_rosters.nil? or @open_rosters.empty?
+    %table.open_rosters{:summary => "Open rosters"}
+     %caption My League Memberships
+     = render @open_rosters
+   - unless @user.microposts.empty?
+    %table.microposts{:summary => "User microposts"}
+     %caption My Posts
+     = render @microposts
+    = will_paginate @microposts
+   - unless @user.groups.empty?
+    %table.groups
+     %caption
+      Commissioner for
+      = pluralize( @user.groups.count, "league")
+     = render @groups
+    = will_paginate @groups
+   - unless @user.rosters.empty?
+    %table.rosters
+     %caption
+      Manager for
+      = pluralize( @user.rosters.count, "fantasy football team")
+     = render @rosters
+    = will_paginate @rosters
+   - unless @user.leagues.empty? or !current_user.admin?
+    %table.groups
+     %caption
+      Member of
+      = pluralize( @leagues.count, "group")
+     = render @leagues
+    = will_paginate @leagues
+  %td{:class => "sidebar round"}
+   %table
+    %tr.sidebar
+     %td
+      %strong Name
+     %td= @user.name
+    %tr.sidebar
+     %td
+      %strong URL
+     %td= link_to user_path(@user), @user
+    %tr.sidebar
+     %td
+      %strong Posts
+     %td= @user.microposts.count
+    - if current_user.admin?
+     %tr.sidebar
+      %td
+       %strong Groups
+      %td= @user.groups.count
+     %tr.sidebar
+      %td
+       %strong Rosters
+      %td= @user.rosters.count
+     %tr.sidebar
+      %td{:colspan => "2"}= render 'shared/league_stats'
+     %tr.sidebar
+      %td{:colspan => "2"}= render 'shared/stats'
+

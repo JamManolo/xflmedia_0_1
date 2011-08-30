@@ -1,0 +1,45 @@
+- unless @lineup_format.qb == 0
+ %tr.sidebar
+  %td
+   %strong QB
+  %td= @lineup_format.qb
+- unless @lineup_format.rb == 0
+ %tr.sidebar
+  %td
+   %strong RB
+  %td= @lineup_format.rb
+- unless @lineup_format.wr == 0
+ %tr.sidebar
+  %td
+   %strong WR
+  %td= @lineup_format.wr
+- unless @lineup_format.flex == 0
+ %tr.sidebar
+  %td
+   %strong RB/WR
+  %td= @lineup_format.flex
+- unless @lineup_format.te == 0
+ %tr.sidebar
+  %td
+   %strong TE
+  %td= @lineup_format.te
+- unless @lineup_format.k == 0
+ %tr.sidebar
+  %td
+   %strong K
+  %td= @lineup_format.k
+- unless @lineup_format.dst == 0
+ %tr.sidebar
+  %td
+   %strong D/ST
+  %td= @lineup_format.dst
+- unless @lineup_format.idp == 0
+ %tr.sidebar
+  %td
+   %strong IDP
+  %td= @lineup_format.idp
+- unless @lineup_format.bench == 0
+ %tr.sidebar
+  %td
+   %strong Bench
+  %td= pluralize(@lineup_format.bench, "player")

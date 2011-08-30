@@ -1,0 +1,31 @@
+= render 'details_js'
+%h1= @title 
+%p
+ %strong Enter your team name and customize your league settings, then click on 'Create your league' at the bottom of this page.
+%p
+ %strong To use the XFL Media default league settings, simply enter your league name, then scroll down and click on 'Create your league'.
+= form_for(@group) do |f|
+ %fieldset
+  %legend League setup
+  %div.field
+   = f.label :name, "League name"
+   = f.text_field :name
+ %fieldset
+  %legend League settings
+  = fields_for(@league_format) do |f2|
+   = render 'league_formats/fields', :f => f2
+ %fieldset
+  %legend Lineup and roster
+  = fields_for(@lineup_format) do |f2|
+   = render 'lineup_formats/fields', :f => f2
+ %div
+  %div{:style => "font-weight:bold;font-size:larger"}
+   Scoring Options
+  %hr
+  = fields_for(@scoring_format) do |f2|
+   = render 'scoring_formats/fields', :f => f2
+ %fieldset
+  %legend Complete league creation
+  %div.actions
+   = f.submit "Create your league"
+

@@ -1,0 +1,26 @@
+= render 'details_js'
+%h1= @title 
+= form_for(@group) do |f|
+ %fieldset
+  %legend League setup
+  %div.field
+   = f.label :name
+   = f.text_field :name
+ %fieldset
+  %legend League settings
+  = fields_for(@league_format) do |f2|
+   = render 'league_formats/fields', :f => f2
+ %fieldset
+  %legend Lineup and roster
+  = fields_for(@lineup_format) do |f2|
+   = render 'lineup_formats/fields', :f => f2
+ %div
+  %legend Scoring Options
+  %hr
+  = fields_for(@scoring_format) do |f2|
+   = render 'scoring_formats/fields', :f => f2
+ %fieldset
+  %legend Complete edits
+  %div.actions
+   = f.submit "Update"
+

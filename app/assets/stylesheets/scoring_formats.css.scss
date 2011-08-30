@@ -1,0 +1,57 @@
+// Place all the styles related to the Details controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body.scoring_formats {
+  // Add the scoring_formats class to your body tag
+  // Then, place scoped styles here.
+}
+
+ul.scoring_fields {
+  list-style-type: none;
+}
+
+ul.scoring_fields li span.scoring_field_left select {
+  width: 50px;
+}
+
+ul.scoring_fields li span.scoring_field_center select {
+  width: 50px;
+}
+
+span.scoring_field_center {
+  //font-size: 90%;
+  //font-weight: bold;
+}
+
+ul.scoring_fields li span.scoring_field_right select {
+  width: 45px;
+}
+
+ul.scoring_fields li span.scoring_field_left {
+  float: left;
+  width: 240px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+span.scoring_field_center {
+  float: left;
+  width: 125px;
+}
+
+span.scoring_field_right {
+//  display: inline;
+//  float: left;
+  width: 100px;
+}
+
+p span.scoring_format {
+  font-weight: bold;
+}
+
+span.scoring_format a {
+  display: inline;
+  margin-left: 1px;
+  font-size: 70%;
+}

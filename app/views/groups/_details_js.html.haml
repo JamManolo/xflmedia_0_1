@@ -1,0 +1,7 @@
+:javascript
+ $(document).ready(function(){
+  $('a[rel="external"]').click(function() {
+   window.open($(this).attr('href'), "mywindow", "height=300, width=400");
+   return false;
+  });
+ });

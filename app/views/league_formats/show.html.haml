@@ -1,0 +1,38 @@
+%table.profile{:summary => "League format information"}
+ %tr
+  %td.main
+   %h1= "League format " + @league_format.id.to_s
+  %td.sidebar.round
+   %table.sidebar
+    %tr
+     %td
+      %strong URL
+     %td= link_to league_format_path(@league_format), @league_format
+    %tr
+     %td
+      %strong League type
+     %td= @league_format.league_type
+    %tr
+     %td
+      %strong Team count
+     %td= @league_format.team_count
+    %tr
+     %td
+      %strong Competition style
+     %td= @league_format.comp_type
+    %tr
+     %td
+      %strong Structure
+     %td= pluralize(@league_format.divisions, "division")
+    %tr
+     %td
+      %strong Reg Season
+     %td= pluralize(@league_format.team_count, "week")
+    %tr
+     %td
+      %strong Playoffs
+     %td= @league_format.sched_format.split(':').last == "0" ? "none" : pluralize( @league_format.sched_format.split(':').last, "week")
+    - if current_user.admin?
+     %tr.sidebar
+      %td{:colspan => 2, :style => "text-align:center"}
+       = link_to "Edit league_format", edit_league_format_path(@league_format)

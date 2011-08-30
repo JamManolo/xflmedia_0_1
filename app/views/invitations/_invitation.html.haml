@@ -1,0 +1,9 @@
+%tr
+ %td.invitation
+  - @group = Group.find(invitation.group_id)
+  = "Invitation from "
+  = link_to  @group.user.name, user_path(@group.user)
+  = " to join league "
+  = link_to  @group.name, group_path(@group)
+ = render :partial => 'groups/accept_form', :locals => { :user => @user, :invitation => invitation }
+  

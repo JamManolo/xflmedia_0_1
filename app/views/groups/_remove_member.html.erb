@@ -1,0 +1,7 @@
+<%= form_for group.memberships.find_by_member_id(user),
+             :html => { :method => :delete, },
+             :remote => true do |f| %>
+  <div class="actions">
+    <%= f.submit "Remove", :onclick => "return_confirm(\"Are you sure?\")" %>
+  </div>
+<% end %>

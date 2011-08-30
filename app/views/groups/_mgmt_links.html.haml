@@ -1,0 +1,10 @@
+%table.mgmt_links
+ %tr
+  %td
+   %strong Group Management
+ %tr.sidebar
+  %td= link_to "Properties", edit_group_path(@group)
+ %tr.sidebar
+  %td= link_to "Invitations", new_invitation_group_path(@group)
+ %tr.sidebar
+  %td= link_to "Membership", edit_membership_group_path(@group)

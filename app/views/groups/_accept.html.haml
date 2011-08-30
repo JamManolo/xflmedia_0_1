@@ -1,0 +1,7 @@
+%form.accept_invitation{:id => "accept_invitation_" + invitation.id.to_s,
+                        :method => "post", :action => "/groups/accept_invitation" }
+ = fields_for group.memberships.build(:member_id => user.id, :league_id => group.id) do |f2|
+  %div= f2.hidden_field :member_id
+  %div= f2.hidden_field :league_id
+  %div
+   %input{:name => "commit", :type => "submit", :value => "Accept Invitation"}

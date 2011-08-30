@@ -1,0 +1,11 @@
+%p= @invitation.email + ','
+%p
+ = @group.user.name + "has invited you to join the fantasy football league " + @group.name
+%p
+ To claim your spot and set up your team, follow the link and sign up using email address:
+ = @email + '.'
+ Don't worry if you'd prefer to use a different email address, you always change it after signing up
+%p= link_to "Follow this  link to get started",
+            new_user_url(:invitation_code => @user.confirmation_code)
+%p
+ = @group.name " is hosted by XFL Media | Fantasy Sports"  

@@ -1,0 +1,23 @@
+<tr>
+  <td class="roster">
+    <%= link_to roster.name, roster %>
+    <% unless roster.group.nil? or @title == roster.group.name %>
+      in league <%= link_to roster.group.name, roster.group %>
+    <% end %>
+    <span class="timestamp">
+      Created <%= time_ago_in_words(roster.created_at) %> ago
+      <% if !roster.user.nil? and @title != roster.user.name %>
+        <span class="content">
+          by <%= link_to roster.user.name, roster.user %>
+        </span>
+      <% end %>
+    </span>
+  </td>
+  <td>
+    <% if current_user?(roster.user) %>
+      <%= link_to "delete", roster, :method => :delete,
+                                    :confirm => "You sure?",
+                                    :title => roster.name %>
+    <% end %>
+  </td>
+</tr>

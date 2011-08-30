@@ -1,0 +1,87 @@
+%table.profile{:summary => "Group information"}
+ %tr
+  %td.main
+   - if @group.is_member?(current_user) and !@group.member_has_roster?(current_user)
+    = render :partial => 'roster_setup', :locals => {:group => @group}
+    %br
+    %hr
+   %h1= @group.name
+   - if !@group.user.nil?
+    %h3
+     created by
+     = link_to @group.user.name, @group.user
+    %h3= "for fun with the " + @group.affiliation.upcase
+   %hr
+   - unless @micropost.nil?
+    %h1.micropost What's up?
+    = render 'shared/micropost_form'
+   = render 'shared/feed'
+   %hr
+   - unless @group.rosters.empty?
+    %table.rosters
+     %caption= pluralize(@group.rosters.length, "Member Team")
+     = render @group.rosters
+  %td{:class => "sidebar round"}
+   = render 'mgmt_links' if current_user?(@group.user)
+   %table
+    %tr
+     %td{:colspan => 2, :style => "text-align:center"}    
+      %strong Group Information
+    %tr.sidebar
+     %td
+      %strong Name
+     %td= @group.name
+    %tr.sidebar
+     %td
+      %strong URL
+     %td= link_to group_path(@group), @group
+    %tr.sidebar
+     %td
+      %strong Members
+     %td=  render 'shared/member_stats'
+    %tr.sidebar
+     %td
+      %strong Type
+     %td=  @group.league_formats.first.league_type.capitalize
+    %tr.sidebar
+     %td
+      %strong Competition
+     %td= @group.league_formats.first.comp_type.capitalize
+    %tr.sidebar
+     %td
+      %strong Size
+     %td= @group.league_formats.first.team_count != 0 ? pluralize(@group.league_formats.first.team_count, "team") : "Open"
+    %tr.sidebar
+     %td
+      %strong Structure
+     %td= pluralize(@group.league_formats.first.divisions, "division")
+    %tr.sidebar
+     %td
+      %strong Reg Season
+     %td= pluralize(@group.league_formats.first.sched_format.split(':').first, "week")
+    %tr.sidebar
+     %td
+      %strong Playoffs
+     %td= @group.league_formats.first.sched_format.split(':').last == "0" ? "none" : pluralize( @group.league_formats.first.sched_format.split(':').last, "week")
+    %tr.sidebar
+     %td
+      %strong Roster
+     %td
+      = @lineup_format.roster_size
+      players
+    %tr.sidebar
+     %td
+      %strong Starters
+     %td
+      = @lineup_format.lineup_size
+      players
+    = render 'lineup_positions'
+    %tr.sidebar
+     %td
+      %strong Roster
+     %td= @lineup_format.roster_format
+    - if @group.is_member?(current_user) and !@group.member_has_roster?(current_user)
+     %tr.sidebar
+      %td{:colspan => 2}
+       = link_to "Create new roster", new_roster_path(:group => @group)
+          

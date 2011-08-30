@@ -1,0 +1,11 @@
+= render 'shared/error_messages', :object => f.object
+.field
+ = f.hidden_field :is_open, :value => true
+.field
+ = f.hidden_field :group_id, :value => @group.id
+.invitation_field
+ = f.label :email_list
+ = f.text_field :email_list
+.invitation_field
+ = f.label :message
+ = f.text_area :message

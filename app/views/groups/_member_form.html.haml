@@ -1,0 +1,10 @@
+- if !user.nil? and !@group.nil? and current_user?(@group.user)
+ - uid = "member_form_" + user.id.to_s
+ %td.edit_membership{:id => uid }
+  - if @group.is_member?(user)
+   = render :partial => 'groups/remove_member',
+            :locals => { :user => user, :group => @group }
+  - else
+   = render :partial => 'groups/add_member',
+            :locals => { :user => user, :group => @group }
+

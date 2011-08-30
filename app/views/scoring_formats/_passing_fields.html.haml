@@ -1,0 +1,81 @@
+%ul.scoring_fields
+ %li
+  %div.field
+   %span.scoring_field_left
+    = f.label :pass_tds_pts, "Passing Touchdowns"
+   %span.scoring_field_center
+    %br
+   %span.scoring_field_right
+    \=
+    = f.select :pass_tds_pts, (0..6), @title =~ /edit/i ? '' : :selected => 4
+    %span.bogus
+     points
+ %li
+  %span.scoring_field_left
+   = f.label :pass_yds_min, "Passing Yards Base"
+  %span.scoring_field_center
+   = f.select :pass_yds_min, [0, 50, 100]
+   yds
+  %span.scoring_field_right
+   - f.label :pass_yds_min_pts
+   \=
+   = f.select :pass_yds_min_pts, (0..5)
+   points
+  %span.detail
+   = link_to "Details", '/details/yardage', :rel => "external"
+ %li
+  %span.scoring_field_left
+   = f.label :pass_yds_incr, "Passing Yards Incremental"
+  %span.scoring_field_center
+   = f.select :pass_yds_incr, [20, 25, 50, 100]
+   yds
+  %span.scoring_field_right
+   \=
+   = f.select :pass_yds_incr_pts, [0,1], @title =~ /edit/i ? '' : :selected => 1
+   point
+ %li
+  %span.scoring_field_left
+   = f.label :pass_yds_bonus_min, "Passing Yards Bonus"
+  %span.scoring_field_center
+   = f.select :pass_yds_bonus_min, [300, 350, 400, 450, 500]
+   or more
+  %span.scoring_field_right
+   - f.label :pass_yds_bonus_min_pts
+   \=
+   = f.select :pass_yds_bonus_min_pts, (0..10)
+   points
+  %span.detail
+   = link_to "Details", '/details/yardage_bonus', :rel => "external"
+ %li
+  %span.scoring_field_left
+   = f.label :pass_tds_bonus_min, "Passing TD Yards Bonus"
+  %span.scoring_field_center
+   = f.select :pass_tds_bonus_min, [40, 50, 60]
+   or more
+  %span.scoring_field_right
+   \=
+   = f.select :pass_tds_bonus_min_pts, (0..6)
+   points
+  %span.detail
+   = link_to "Details", '/details/yardage_bonus', :rel => "external"
+ %li
+  %span.scoring_field_left
+   = f.label :pass_int_pts, "Interceptions"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :pass_int_pts, (-3..0), @title =~ /edit/i ? '' : :selected => -2
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :pass_int_pick_6_pts, "Pick-Six Interceptions"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :pass_int_pick_6_pts, (-6..0), @title =~ /edit/i ? '' : :selected => 0
+   points
+  
+
+  

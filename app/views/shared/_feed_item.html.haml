@@ -1,0 +1,10 @@
+%tr
+ %td.micropost
+  %span.user= link_to feed_item.user.name, feed_item.user
+  %span.content= feed_item.content
+  %span.timestamp
+   Posted
+   = time_ago_in_words(feed_item.created_at)
+ %td
+  - if current_user.admin? or (!@group.nil? and current_user == @group.user)
+   = link_to "delete", feed_item, :method => :delete, :confirm => "You sure?", :title => feed_item.content

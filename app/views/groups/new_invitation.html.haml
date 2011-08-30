@@ -1,0 +1,11 @@
+%h1= @title
+%form.new_invitation#new_invitation{:method => "post", :action => "/groups/send_invitation"}
+ = fields_for(@invitation) do |f|
+  %fieldset
+   %legend Invitation
+   = render 'invitations/fields', :f => f
+  %fieldset
+   %legend Send invitation
+   .actions
+    = f.submit "Send invitation"
+

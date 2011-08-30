@@ -1,0 +1,6 @@
+<% @group %>
+<a href="<%= members_group_path(@group) %>">
+   <span id="members" class="stat">
+     <%= pluralize(@group.members.count, "owner") %>
+   </span>
+</a>

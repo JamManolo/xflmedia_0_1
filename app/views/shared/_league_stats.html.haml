@@ -1,0 +1,4 @@
+- if current_user.admin?
+ .stats
+  %span.stat#leagues
+   = link_to pluralize(@user.leagues.count, "league membership"), leagues_user_path(@user)

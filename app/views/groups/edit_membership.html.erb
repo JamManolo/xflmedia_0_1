@@ -1,0 +1,18 @@
+<h1>
+  Membership for <%= link_to @group.name, @group %>
+</h1>
+
+<%= will_paginate @users %>
+
+<table class="profile">
+  <tr>
+    <td class="main">
+      <table class="users">
+        <%= render @users %>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<%= will_paginate @users %>
+

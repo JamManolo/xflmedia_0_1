@@ -1,0 +1,9 @@
+<h1> <%= @title %> </h1>
+
+<%= form_for(@lineup_format) do |f| %>
+  <%= render 'fields', :f => f %>
+  <div class="actions">
+    <%= f.submit "Update", :class => "button-small" %>
+  </div>
+<% end %>
+

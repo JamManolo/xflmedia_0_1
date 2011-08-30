@@ -1,0 +1,6 @@
+= form_for group.memberships.build(:member_id => user.id, :league_id => group.id),
+             :remote => true do |f|
+ %div= f.hidden_field :member_id
+ %div= f.hidden_field :league_id 
+ %div.actions
+  = f.submit "Add as Member"

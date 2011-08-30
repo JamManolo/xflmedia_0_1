@@ -1,0 +1,18 @@
+<table summary="Information about a users leagues">
+  <tr>
+    <td class="main">
+      <h1><%= @title %></h1>
+      <% unless @leagues.empty? %>
+        <table class="groups">
+          <%= render @leagues %>
+        </table>
+      <% end %>
+    </td>
+    <td class="sidebar round">
+      <strong>Name</strong> <%= @user.name %><br />
+      <strong>URL</strong> <%= link_to user_path(@user), @user %><br />
+      <%= render 'shared/league_stats' %>
+    </td>
+  </tr>
+</table>
+

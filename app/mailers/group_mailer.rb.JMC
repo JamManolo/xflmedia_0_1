@@ -1,0 +1,8 @@
+class GroupMailer < ActionMailer::Base
+  default :from => "info@xflmedia.com"
+  
+  def league_invitation(email)
+    mail(:to => email, :subject => "League Invitation")
+  end
+  
+end

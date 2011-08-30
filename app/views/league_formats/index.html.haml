@@ -1,0 +1,9 @@
+%table
+ %tr
+  %td.main
+   %h1 All league formats
+   %span.content= link_to "Create a league format", new_league_format_path
+   - unless @league_formats.empty?
+    %table.league_formats
+     = render @league_formats
+

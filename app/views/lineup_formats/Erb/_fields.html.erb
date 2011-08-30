@@ -1,0 +1,41 @@
+<%= render 'shared/error_messages', :object => f.object %>
+<div class="pos_field">
+  <%= f.label :qb, "Quarterback (QB)" %>
+  <%= f.select :qb, (1..1), :selected => 1 %>
+</div>
+<div class="pos_field">
+  <%= f.label :rb, "Running Back (RB)" %>
+  <%= f.select :rb, (1..5).to_a, @title =~ /edit/i ? '' : :selected => 2 %>
+</div>
+<div class="pos_field">
+  <%= f.label :wr, "Wide Receiver (WR)" %>
+  <%= f.select :wr, (2..3).to_a, @title =~ /edit/i ? '' : :selected => 2 %>
+</div>
+<div class="pos_field">
+  <%= f.label :te, "Tight End (TE)" %>
+  <%= f.select :te, (1..2).to_a, @title =~ /edit/i ? '' : :selected => 1 %>
+</div>
+<div class="pos_field">
+  <%= f.label :k, "Kicker (K)" %>
+  <%= f.select :k, (1..1).to_a, @title =~ /edit/i ? '' : :selected => 1 %>
+</div>
+<div class="pos_field">
+  <%= f.label :dst, "Def/ Special Teams (DST)" %>
+  <%= f.select :dst, (1..1).to_a, @title =~ /edit/i ? '' : :selected => 1 %>
+</div>
+<div class="pos_field">
+  <%= f.label :idp, "Defensive Player (IDP)" %>
+  <%= f.select :idp, (0..1).to_a, @title =~ /edit/i ? '' : :selected => 1 %>
+</div>
+<div class="pos_field">
+  <%= f.label :flex, "Flex (RB/WR)" %>
+  <%= f.select :flex, (0..1).to_a, @title =~ /edit/i ? '' : :selected => 0 %>
+</div>
+<div class="pos_field">
+  <%= f.label :ir, "Injured Reserve (IR)" %>
+  <%= f.select :ir, (0..3).to_a, @title =~ /edit/i ? '' : :selected => 0 %>
+</div>
+<div class="pos_field">
+  <%= f.label :bench, "Bench (BN)" %>
+  <%= f.select :bench, (0..9).to_a, @title =~ /edit/i ? '' : :selected => 6 %>
+</div>

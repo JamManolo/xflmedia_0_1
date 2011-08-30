@@ -1,0 +1,9 @@
+%table
+ %tr
+  %td.main
+   %h1 All groups
+   %span.content= link_to "Create a group (HAML)", new_group_path
+   = unless @groups.empty?
+    %table.groups
+     = render @groups
+

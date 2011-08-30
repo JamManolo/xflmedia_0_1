@@ -1,0 +1,8 @@
+%tr
+ %td.league_format
+  = link_to "League format " + league_format.id.to_s, league_format
+  %span.timestamp= "Created " + time_ago_in_words(league_format.created_at) + " ago"
+  - if current_user.admin?
+   %td= link_to "delete", league_format, :method => :delete,
+                                       :confirm => "You sure?",
+                                       :title => "League format " + league_format.id.to_s

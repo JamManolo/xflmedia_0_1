@@ -1,0 +1,1 @@
+$("#member_form_<%= @user.id %>").html("added to group")

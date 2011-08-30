@@ -1,0 +1,29 @@
+<tr>
+  <td class="group">
+    League <%= link_to group.name, group %>
+    <span class="timestamp">
+      Created <%= time_ago_in_words(group.created_at) %> ago
+      <% if !group.user.nil? and @title != group.user.name %>
+        <span class="content">
+          by <%= link_to group.user.name, group.user %>
+        </span>
+      <% end %>
+    </span>  
+  </td>
+  <% if @title == "All groups" %>
+    <td class="attr">
+      <%= group.league_formats.first.league_type.capitalize %>
+      <span class="attr">
+        <%= group.league_formats.first.comp_type.capitalize %>
+      </span>
+    </td>
+  <% end %>
+  <td>
+    <% if current_user?(group.user) %>
+      <%= link_to "delete", group, :method => :delete,
+                                   :confirm => "You sure?",
+                                   :title => group.name %>
+
+    <% end %>
+  </td>
+</tr>

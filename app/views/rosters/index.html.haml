@@ -1,0 +1,9 @@
+%table
+ %tr
+  %td.main
+   %h1 All rosters (HAML)
+   - unless @rosters.empty?
+    = will_paginate   
+    %table.rosters
+     = render @rosters
+    = will_paginate

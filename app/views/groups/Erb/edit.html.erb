@@ -1,0 +1,39 @@
+<h1> <%= @title %> </h1>
+
+<%= form_for(@group) do |f| %>
+
+  <fieldset>
+    <legend>League setup</legend>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+  </fieldset>
+  
+  <fieldset>
+    <legend>League settings</legend>
+    <%= render 'fields', :f => f %>
+  </fieldset>
+  
+  <fieldset>
+    <legend>Lineup and roster size</legend>
+    <%= fields_for(@lineup_format) do |f2| %>
+      <%= render 'lineup_formats/fields', :f => f2 %>
+    <% end %>
+  </fieldset>
+
+  <fieldset class="fred">
+    <legend>Scoring options</legend>
+    <%= fields_for(@scoring_format) do |f2| %>
+      <%= render 'scoring_formats/jmc', :f => f2 %>
+    <% end %>
+  </fieldset>
+  
+  <fieldset>
+    <legend>Complete edits</legend>
+    <div class="actions">
+      <%= f.submit "Update" %>
+    </div>
+  </fieldset>
+<% end %>
+

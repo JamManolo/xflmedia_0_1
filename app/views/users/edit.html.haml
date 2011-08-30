@@ -1,0 +1,9 @@
+%h1= @title
+= form_for(@user) do |f|
+ = render 'fields', :f => f
+ .actions
+  = f.submit "Update"
+%div
+ = gravatar_for @user
+ = link_to "change", "http://gravatar.com/emails"
+

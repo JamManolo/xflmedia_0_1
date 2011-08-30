@@ -1,0 +1,22 @@
+%p= @invitation.email + ','
+%p
+ = @group.user.name + " has invited you to join the fantasy football league " + @group.name
+%p
+ A message from 
+ = @group.user.name 
+%p.invitation_message
+ = '"' + @invitation.message  + '"'
+%p
+ To claim your spot and set up your team, follow the link below. Be sure to register using this email address (
+ = @invitation.email + ').'
+ If you prefer to use a different email account, you can always change it after signing up
+%p
+ - if @user.nil?
+  = link_to "Follow this link to sign up and get started",
+            signup_url(:email => @invitation.email)
+ - else
+  = link_to "Follow this link to sign in and get started",
+            signin_url(:email => @invitation.email)
+%p
+ = @group.name + " is hosted by "
+ = link_to "XFL Media | Fantasy Sports", "http://www.xflmedia.com"

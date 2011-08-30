@@ -1,0 +1,29 @@
+= render 'shared/error_messages', :object => f.object
+%fieldset
+ %legend
+  Passing
+ = render 'scoring_formats/passing_fields', :f => f
+%fieldset
+ %legend
+  Rushing
+ = render 'scoring_formats/rushing_fields', :f => f
+%fieldset
+ %legend
+  Receiving
+ = render 'scoring_formats/receiving_fields', :f => f
+%fieldset
+ %legend
+  Miscellaneous
+ = render 'scoring_formats/misc_fields', :f => f
+%fieldset
+ %legend
+  Kicking
+ = render 'scoring_formats/kicking_fields', :f => f
+%fieldset
+ %legend
+  Defense
+ = render 'scoring_formats/defense_fields', :f => f
+%fieldset
+ %legend
+  Defensive Player
+ = render 'scoring_formats/idp_fields', :f => f 

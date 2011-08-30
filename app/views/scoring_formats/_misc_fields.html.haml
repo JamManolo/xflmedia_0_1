@@ -1,0 +1,62 @@
+%ul.scoring_fields
+ %li
+  %span.scoring_field_left
+   = f.label :two_pt_conv_pass_pts, "Two Point Conversion"
+  %span.scoring_field_center passing
+  %span.scoring_field_right
+   \=
+   = f.select :two_pt_conv_pass_pts, (0..2), @title =~ /edit/i ? '' : :selected => 1
+   points
+ %li
+  %span.scoring_field_left
+   %br
+   - f.label :two_pt_conv_rush_pts, "Two Point Conversion"
+  %span.scoring_field_center rushing
+  %span.scoring_field_right
+   \=
+   = f.select :two_pt_conv_rush_pts, (0..2), @title =~ /edit/i ? '' : :selected => 2
+   points
+ %li
+  %span.scoring_field_left
+   %br
+   - f.label :two_pt_conv_rec_pts, "Two Point Conversion"
+  %span.scoring_field_center receiving
+  %span.scoring_field_right
+   \=
+   = f.select :two_pt_conv_rec_pts, (0..2), @title =~ /edit/i ? '' : :selected => 2
+   points   
+ %li
+  %span.scoring_field_left
+   = f.label :misc_tds_pts, "Misc Touchdowns"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :misc_tds_pts, (0..6), @title =~ /edit/i ? '' : :selected => 6
+   points
+  %span.detail
+   = link_to "Details", '/details/template', :rel => "external"
+ %li
+  %span.scoring_field_left
+   = f.label :misc_tds_pts, "Misc TD Yards Bonus"
+  %span.scoring_field_center
+   = f.select :misc_tds_bonus_min, [40,50,60,70,80,90,100]
+   or more
+  %span.scoring_field_right
+   \=
+   = f.select :misc_tds_bonus_min_pts, (0..6)
+   points
+  %span.detail
+   = link_to "Details", '/details/yardage_bonus', :rel => "external" 
+ %li
+  %span.scoring_field_left
+   = f.label :fum_lost_pts, "Fumbles Lost"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :fum_lost_pts, [0,-1,-2], @title =~ /edit/i ? '' : :selected => -2
+   points
+
+
+

@@ -1,0 +1,6 @@
+%h1= @title
+= form_for(@user) do |f|
+ = render 'fields', :f => f
+ .actions
+  = f.submit "Sign up"
+

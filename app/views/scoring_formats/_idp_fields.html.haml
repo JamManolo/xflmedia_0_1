@@ -1,0 +1,77 @@
+%ul.scoring_fields
+ %li
+  %span.scoring_field_left
+   = f.label :idp_tackle_pts, "Tackle"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :idp_tackle_pts, [0,1,2], @title =~ /edit/i ? '' : :selected => 1
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :idp_assist_pts, "Assist"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :idp_assist_pts, [0,1], @title =~ /edit/i ? '' : :selected => 0
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :idp_ff_pts, "Forced Fumble"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :idp_ff_pts, [0,1,2]
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :idp_fr_pts, "Fumble Recovery"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :idp_fr_pts, [0,1,2], @title =~ /edit/i ? '' : :selected => 2
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :idp_int_pts, "Interception"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :idp_int_pts, [0,1,2], @title =~ /edit/i ? '' : :selected => 2
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :idp_sack_pts, "Sack"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :idp_sack_pts, [0,1,2], @title =~ /edit/i ? '' : :selected => 2
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :idp_block_kick_pts, "Blocked Kick"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :idp_block_kick_pts, [0,1,2], @title =~ /edit/i ? '' : :selected => 2
+   points
+ %li
+  %span.scoring_field_left
+   = f.label :idp_safety_pts, "Safety"
+  %span.scoring_field_center
+   %br
+  %span.scoring_field_right
+   \=
+   = f.select :idp_safety_pts, [0,2], @title =~ /edit/i ? '' : :selected => 2
+   points
+
+ 
+   
+

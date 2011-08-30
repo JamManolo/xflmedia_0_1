@@ -1,0 +1,6 @@
+- if !user.nil? and current_user == user and !@group.nil?
+ %td.accept_invitation{:id => "accept_form_" + invitation.id.to_s }
+  %div{:id => "accept_form_" + invitation.id.to_s }
+   = render :partial => 'groups/accept',
+            :locals => { :user => user, :group => @group, :invitation => invitation }
+

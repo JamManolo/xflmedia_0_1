@@ -1,0 +1,11 @@
+%table
+ %tr
+  %td.main
+   %h1 All groups
+   %span.content= link_to "Create a group", new_group_path
+   - unless @groups.empty?
+    = will_paginate
+    %table.groups
+     = render @groups
+    = will_paginate
+

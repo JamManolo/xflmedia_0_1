@@ -1,0 +1,30 @@
+// Place all the styles related to the Details controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body.invitations {
+  // Add the invitations class to your body tag
+  // Then, place scoped styles here.
+}
+
+form.new_invitation label {
+  float: left;
+  width: 100px;
+  text-align: right;
+}
+
+form.new_invitation input {
+  margin-left: 110px;
+}
+
+form.new_invitation .invitation_field input {
+  margin-left: 10px;
+  width: 410px;
+}
+
+form.new_invitation .invitation_field textarea {
+  margin-left: 10px;
+  width: 400px;
+}
+
+

@@ -1,0 +1,43 @@
+<table class="profile" summary="Roster information">
+  <tr>
+    <td class="main">
+      <h1>
+        Team <%= @roster.name %>
+      </h1>
+      <h3>
+        in league <%= link_to @roster.group.name, @roster.group %>
+      </h3>
+      <% if !@roster.user.nil? %>
+        <h3>
+          owned by <%= link_to @roster.user.name, @roster.user %>
+        </h3>
+      <% end %>      
+    </td>
+    <td class="sidebar round">
+      <table>
+        <tr class="sidebar">
+          <td><strong>Name</strong></td>
+          <td><%= @roster.name %></td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>URL</strong></td>
+          <td><%= link_to roster_path(@roster), @roster %> </td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>League</strong></td>
+          <td><%= link_to @roster.group.name, @roster.group %> </td>
+        </tr>
+        <tr class="sidebar">
+          <td><strong>Owner</strong></td>
+          <td><%= link_to @roster.user.name, @roster.user %> </td>
+        </tr>
+        <% if current_user?(@roster.user) %>
+          <tr class="sidebar">
+             <td></td>
+             <td><%= link_to "Edit roster", edit_roster_path(@roster) %></td>
+         </tr>
+        <% end %>
+      </table>
+    </td>
+  </tr>
+</table>
